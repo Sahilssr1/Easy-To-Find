@@ -559,17 +559,18 @@ body:has(.compact-navbar.active) .top-category-section {
 
 /* Full Width Image Section */
 .full-width-image-section {
-  width: 100%;
+  width: 85%;
+  margin: 0 auto; /* Centers the section itself horizontally */
   overflow: hidden; /* Prevents any overflow issues */
-  text-align: center; /* Centers the image horizontally if it's smaller than the section */
+  text-align: center; /* Centers inline or inline-block content */
 }
 
 .full-width-image-section img {
-  width: 100%; /* Makes the image take the full width of the section */
-  height: auto; /* Maintains the image's natural aspect ratio for responsiveness */
-  display: block; /* Removes any inline spacing issues */
-  max-width: 100%; /* Ensures the image doesn't overflow its container on larger screens */
-  margin: 0 auto; /* Centers the image horizontally within the section */
+  width: 85%; /* Sets the image width to 85% of the section */
+  height: auto; /* Maintains the image's aspect ratio */
+  display: block; /* Removes inline spacing issues */
+  max-width: 100%; /* Ensures the image doesn't overflow */
+  margin: 40px auto 0px auto; /* Centers the image horizontally and adds top margin */
 }
 
 /* Custom colors for FAQ section (using variables from :root) */
