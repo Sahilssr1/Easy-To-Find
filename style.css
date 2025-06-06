@@ -325,6 +325,18 @@ body {
   margin-top: 20px;
 }
 
+  /* Icon Box Styling */
+        .icon-box {
+            /**************************************************/
+            /* THIS IS THE LINE I CHANGED TO INCREASE ICON SIZE */
+            /**************************************************/
+            font-size: 2rem; /* Increased from a smaller value */
+
+            margin-bottom: 15px;
+            line-height: 1; /* Ensures icon is centered vertically */
+        }
+
+
 body:has(.compact-navbar.active) .top-category-section {
   margin-top: 120px;
 }
@@ -391,64 +403,143 @@ body:has(.compact-navbar.active) .top-category-section {
   border-top-color: var(--coaching-color);
 }
 
-/* Best Life Section */
+/* Best Life Section - Base Styles (Desktop First) */
 .best-life-section {
-  padding: 20px 10px;
-  background-color: #f9fcff;
+  padding: 40px 20px; /* Adjusted padding for more space */
+  background-color: #f9fcff; /* Or your preferred background */
+  font-family: 'Inter', sans-serif; /* Ensuring consistent font */
 }
 
 .best-life-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 10px;
+  max-width: 1200px; /* Max width of the content */
+  margin: 0 auto; /* Center the container */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Vertically align items in the center */
+  gap: 40px; /* Space between image and text */
 }
 
 .best-life-images {
-  flex: 1;
-  min-width: 300px;
+  flex: 1; /* Allows this container to take up available space */
+  min-width: 300px; /* Minimum width before it tries to shrink further */
+  border-radius: 12px; /* Slightly more rounded corners */
+  overflow: hidden; /* Ensures image respects border-radius */
 }
 
 .best-life-img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make image responsive within its container */
+  height: 450px; /* Default height for larger screens */
+  object-fit: cover; /* Ensures image covers the area, might crop */
+  display: block; /* Remove extra space below image */
+  border-radius: 12px; /* Match parent's border-radius if overflow hidden is not used on parent */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
 
 .best-life-text {
-  flex: 1;
-  padding: 0 10px;
-  min-width: 300px;
-  text-align: left;
+  flex: 1; /* Allows this container to take up available space */
+  min-width: 300px; /* Minimum width */
+  padding: 0 10px; /* Padding for the text content */
+  text-align: left; /* Default text alignment */
 }
 
 .best-life-text h2 {
-  font-size: 2.5rem;
-  color: var(--text-dark);
-  margin-bottom: 15px;
-  line-height: 1.2;
+  font-size: 2.5rem; /* Heading size */
+  color: var(--text-dark, #1e2e3e); /* Use CSS variable or fallback */
+  margin-bottom: 20px; /* Space below heading */
+  line-height: 1.3; /* Improved line height */
+  font-weight: 700; /* Bold heading */
 }
 
 .best-life-text h2 span {
-  color: var(--cyan-accent);
+  color: var(--cyan-accent, #00c4cc); /* Use CSS variable or fallback */
 }
 
 .best-life-text p {
-  font-size: 1rem;
-  color: var(--text-light);
-  line-height: 1.6;
+  font-size: 1rem; /* Paragraph text size */
+  color: var(--text-light, #6c7a89); /* Use CSS variable or fallback */
+  line-height: 1.7; /* Improved line height for readability */
 }
+
+/* Responsive Styles for Tablets and Smaller Desktops */
+@media (max-width: 992px) { /* Adjust breakpoint as needed */
+  .best-life-container {
+    gap: 30px; /* Reduce gap for medium screens */
+  }
+  .best-life-img {
+    height: 400px; /* Slightly reduce image height */
+  }
+  .best-life-text h2 {
+    font-size: 2.2rem;
+  }
+}
+/* Responsive Styles for Tablets */
+@media (max-width: 768px) {
+  .best-life-section {
+    padding: 30px 15px; /* Adjust section padding */
+  }
+
+  .best-life-container {
+    flex-direction: column; /* Stack items vertically */
+    gap: 25px; /* Gap between stacked image and text */
+  }
+
+  .best-life-images,
+  .best-life-text {
+    width: 100%; /* Make children take full width when stacked */
+    min-width: unset; /* Reset min-width from desktop styles */
+    padding-left: 0; /* Reset specific padding if section padding is enough */
+    padding-right: 0;
+  }
+
+  .best-life-text {
+    text-align: center; /* Center-align text content when stacked */
+  }
+
+  .best-life-img {
+    height: 280px; /* Adjusted image height for tablets */
+  }
+
+  .best-life-text h2 {
+    font-size: 2rem; /* Adjust font size */
+  }
+
+  .best-life-text p {
+    font-size: 0.95rem; /* Adjust font size */
+  }
+}
+/* Responsive Styles for Mobile Phones */
+@media (max-width: 480px) {
+  .best-life-section {
+    padding: 20px 10px; /* Further adjust section padding for mobile */
+  }
+
+  .best-life-container {
+    gap: 20px; /* Gap for mobile */
+  }
+
+  .best-life-img {
+    height: 220px; /* Adjusted image height for mobile phones */
+    border-radius: 10px; /* Consistent rounding */
+  }
+  .best-life-images {
+    border-radius: 10px;
+  }
+
+  .best-life-text h2 {
+    font-size: 1.8rem; /* Further reduced font size for h2 on mobile */
+    margin-bottom: 15px;
+  }
+
+  .best-life-text p {
+    font-size: 0.9rem; /* Adjust font size for mobile */
+  }
+}
+
 
 /* Video Section */
 .video-section {
   padding: 20px 10px;
   background-color: #f9fcff;
 }
-
 .video-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -457,45 +548,38 @@ body:has(.compact-navbar.active) .top-category-section {
   align-items: center;
   gap: 10px;
 }
-
 .video-text {
   flex: 1;
   padding: 0 10px;
-  min-width: 300px;
+  min-width: 300px; /* Base min-width */
   text-align: left;
   order: 1;
 }
-
 .video-text h2 {
   font-size: 2.5rem;
   color: var(--text-dark);
   margin-bottom: 15px;
   line-height: 1.2;
 }
-
 .video-text h2 span {
   color: var(--cyan-accent);
 }
-
 .video-text p {
   font-size: 1rem;
   color: var(--text-light);
   line-height: 1.6;
 }
-
 .video-player {
   flex: 1;
-  min-width: 300px;
+  min-width: 300px; /* Base min-width */
   order: 2;
 }
-
 .video-player-element {
   width: 100%;
-  height: 500px;
+  height: 500px; /* Desktop height */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 .video-player-element::-webkit-media-controls-timeline {
   display: none;
 }
@@ -505,7 +589,6 @@ body:has(.compact-navbar.active) .top-category-section {
   padding: 20px 10px;
   background-color: #f9fcff;
 }
-
 .college-section .video-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -514,45 +597,38 @@ body:has(.compact-navbar.active) .top-category-section {
   align-items: center;
   gap: 10px;
 }
-
 .college-section .video-text {
   flex: 1;
   padding: 0 10px;
-  min-width: 300px;
+  min-width: 300px; /* Base min-width */
   text-align: left;
   order: 2; /* Text on the right */
 }
-
 .college-section .video-text h2 {
   font-size: 2.5rem;
   color: var(--text-dark);
   margin-bottom: 15px;
   line-height: 1.2;
 }
-
 .college-section .video-text h2 span {
   color: var(--cyan-accent);
 }
-
 .college-section .video-text p {
   font-size: 1rem;
   color: var(--text-light);
   line-height: 1.6;
 }
-
 .college-section .video-player {
   flex: 1;
-  min-width: 300px;
+  min-width: 300px; /* Base min-width */
   order: 1; /* Video on the left */
 }
-
 .college-section .video-player-element {
   width: 100%;
-  height: 500px;
+  height: 500px; /* Desktop height */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 .college-section .video-player-element::-webkit-media-controls-timeline {
   display: none;
 }
@@ -564,12 +640,11 @@ body:has(.compact-navbar.active) .top-category-section {
   overflow: hidden; /* Prevents any overflow issues */
   text-align: center; /* Centers inline or inline-block content */
 }
-
 .full-width-image-section img {
   width: 85%; /* Sets the image width to 85% of the section */
   height: auto; /* Maintains the image's aspect ratio */
   display: block; /* Removes inline spacing issues */
-  max-width: 100%; /* Ensures the image doesn't overflow */
+  /* max-width: 100%; Removed as it's redundant with width: 85% (as per previous cleanup) */
   margin: 40px auto 0px auto; /* Centers the image horizontally and adds top margin */
 }
 
@@ -587,7 +662,6 @@ body:has(.compact-navbar.active) .top-category-section {
   transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
   opacity: 0;
 }
-
 .faq-answer.active {
   max-height: 500px; /* Adjust based on expected max answer height */
   opacity: 1;
@@ -692,6 +766,10 @@ body:has(.compact-navbar.active) .top-category-section {
 
   .best-life-text {
     padding: 5px 0;
+    /* For 768px, the dedicated block had text-align: center;
+       If this is desired, it needs to be re-added here or to the base style for mobile.
+       Original dedicated block also had width:100% and min-width:unset for images/text.
+       These are implicitly handled by flex-direction: column and parent padding. */
   }
 
   .best-life-img {
@@ -704,21 +782,26 @@ body:has(.compact-navbar.active) .top-category-section {
 
   .video-container {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    align-items: flex-start; /* Existing alignment */
+    gap: 5px; /* Existing gap */
   }
 
   .video-text {
-    padding: 5px 0;
-    order: 1;
+    padding: 5px 0; /* Existing padding */
+    order: 1; /* Existing order */
+    min-width: unset; /* ADDED: Override base min-width */
+    width: 100%;     /* ADDED: Ensure full width when stacked */
+    /* Consider text-align: center; if desired for stacked view */
   }
 
   .video-player {
-    order: 2;
+    order: 2; /* Existing order */
+    min-width: unset; /* ADDED: Override base min-width */
+    width: 100%;     /* ADDED: Ensure full width when stacked */
   }
 
   .video-player-element {
-    height: 120px;
+    height: 120px; /* Maintained as per your requirement */
   }
 
   .college-section {
@@ -727,21 +810,26 @@ body:has(.compact-navbar.active) .top-category-section {
 
   .college-section .video-container {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    align-items: flex-start; /* Existing alignment */
+    gap: 5px; /* Existing gap */
   }
 
   .college-section .video-text {
-    padding: 5px 0;
-    order: 2; /* Text below video on mobile */
+    padding: 5px 0; /* Existing padding */
+    order: 2; /* Existing order: Text below video on mobile */
+    min-width: unset; /* ADDED: Override base min-width */
+    width: 100%;     /* ADDED: Ensure full width when stacked */
+    /* Consider text-align: center; if desired for stacked view */
   }
 
   .college-section .video-player {
-    order: 1; /* Video above text on mobile */
+    order: 1; /* Existing order: Video above text on mobile */
+    min-width: unset; /* ADDED: Override base min-width */
+    width: 100%;     /* ADDED: Ensure full width when stacked */
   }
 
   .college-section .video-player-element {
-    height: 120px;
+    height: 120px; /* Maintained as per your requirement */
   }
 }
 
@@ -785,34 +873,45 @@ body:has(.compact-navbar.active) .top-category-section {
   }
 
   .best-life-text h2 {
-    font-size: 2rem;
+    font-size: 2rem; /* Original dedicated was 1.8rem */
   }
 
   .best-life-img {
-    height: 100px;
+    height: 100px; /* Original dedicated was 220px */
   }
 
-  .video-text h2 {
+  /*
+    For .video-text and .video-player under 480px,
+    the rules for min-width: unset and width: 100% from the 768px breakpoint
+    will cascade down if not overridden.
+    If more specific styling for text/player at 480px is needed, it would be added here.
+    For now, we rely on the cascade from the 768px rules for these properties.
+  */
+
+  .video-text h2 { /* This existing rule adjusts font size */
     font-size: 2rem;
   }
+  /* If .video-text itself needed different padding at 480px, it would be here */
+  /* e.g. .video-text { padding: 0; } */
+
 
   .video-player-element {
-    height: 100px;
+    height: 100px; /* Maintained as per your requirement */
   }
 
   .college-section {
     padding: 10px 5px;
   }
 
-  .college-section .video-text h2 {
+  .college-section .video-text h2 { /* This existing rule adjusts font size */
     font-size: 2rem;
   }
+  /* If .college-section .video-text itself needed different padding at 480px, it would be here */
 
   .college-section .video-player-element {
-    height: 100px;
+    height: 100px; /* Maintained as per your requirement */
   }
 }
-
 
         .footer-section {
             background-color: var(--footer-bg);
