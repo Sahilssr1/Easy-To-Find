@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Hostels - Easy to Find</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="hostel.css" />
+</head>
+<body class="bg-gray-50">
+
+    <!-- Compact Navbar -->
+    <nav class="compact-navbar" id="compactNav">
+        <a href="index.html" class="logo">Easy to Find</a>
+        <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search Hostels in Patna..." />
+        </div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <button id="listPropertyBtn" class="list-property-btn">List Your Hostel</button>
+        </div>
+        <div class="mobile-menu-btn">☰</div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container pt-24 px-4 md:px-8">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar" id="filtersSidebar">
+            <div class="filter-header">
+                <h2 class="text-xl font-bold">Filters</h2>
+                <button id="clearFiltersBtn" class="clear-btn">Clear All</button>
+            </div>
+            <form id="filterForm">
+                <!-- Room Sharing Filter -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Select room sharing type</h3>
+                    <label><input type="checkbox" name="sharing" value="single"> Single</label>
+                    <label><input type="checkbox" name="sharing" value="double"> Double</label>
+                    <label><input type="checkbox" name="sharing" value="triple"> Triple</label>
+                </div>
+
+                <!-- Gender Filter -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Select your gender</h3>
+                    <label><input type="radio" name="gender" value="male"> Male</label>
+                    <label><input type="radio" name="gender" value="female"> Female</label>
+                    <label><input type="radio" name="gender" value="any" checked> Any</label>
+                </div>
+
+                <!-- Residents Type Filter -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Type of residents</h3>
+                    <label><input type="checkbox" name="resident" value="students"> Students</label>
+                    <label><input type="checkbox" name="resident" value="professionals"> Working professional</label>
+                </div>
+
+                <!-- Budget Filter -->
+                <div class="filter-group">
+                    <h3 class="filter-title">Select your budget</h3>
+                    <div class="budget-slider">
+                        <input type="range" id="budgetRange" name="budget" min="0" max="50000" step="1000" value="50000">
+                        <div class="budget-value">Up to <span id="budgetValue">₹50,000</span></div>
+                    </div>
+                </div>
+            </form>
+        </aside>
+
+        <!-- Hostels Listing -->
+        <div class="hostels-listing">
+            <div class="listing-header">
+                <h1 id="propertyCount" class="text-lg">19 properties found in Patna, India</h1>
+                <button id="toggleFilterBtn" class="toggle-filter-btn">
+                    <i class="fas fa-filter"></i> Filter
+                </button>
+            </div>
+            <div id="hostelList" class="grid grid-cols-1 gap-6">
+                <!-- Hostel cards will be dynamically inserted here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Popular Searches Section -->
+    <section class="popular-searches-section">
+        <h2 class="title">Popular searches</h2>
+        <p class="subtitle">Your gateway to best properties, compatible roommates & best deals</p>
+        <div class="searches-grid">
+            <a href="#">Hostels in Boring Road</a>
+            <a href="#">PGs in Boring Road</a>
+            <a href="#">Hostels in Kankarbagh</a>
+            <a href="#">PGs in Kankarbagh</a>
+            <a href="#">Hostels in Patliputra</a>
+            <a href="#">PGs in Patliputra</a>
+            <a href="#">Hostels in Ashok Rajpath</a>
+            <a href="#">PGs in Ashok Rajpath</a>
+            <a href="#">Hostels in Bailey Road</a>
+            <a href="#">PGs in Bailey Road</a>
+            <a href="#">Hostels in Rajendra Nagar</a>
+            <a href="#">PGs in Rajendra Nagar</a>
+        </div>
+    </section>
+
+
+    <!-- Add Hostel Modal -->
+    <div id="addHostelModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold">List Your Property</h2>
+                <button id="closeModalBtn" class="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addHostelForm">
+                    <div class="form-group">
+                        <label for="hostelName">Hostel Name</label>
+                        <input type="text" id="hostelName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hostelLocation">Location</label>
+                        <input type="text" id="hostelLocation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hostelPrice">Starting Price (per month)</label>
+                        <input type="number" id="hostelPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hostelGender">Gender</label>
+                        <select id="hostelGender">
+                            <option value="male">Boys</option>
+                            <option value="female">Girls</option>
+                            <option value="any">Any</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hostelImage">Image URL</label>
+                        <input type="url" id="hostelImage" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <button type="submit" class="submit-btn">Add Hostel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+      <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <!-- Column 1: Logo and Description -->
+            <div class="footer-column col-span-full md:col-span-1">
+                <h3 class="text-3xl font-bold mb-4 text-primary-color">Easy to Find</h3>
+                <p class="text-sm">
+                    Your ultimate destination for finding the perfect hostels, colleges, and coaching institutes. We simplify your search for quality education and comfortable living.
+                </p>
+                <address class="not-italic text-sm mt-4">
+                    <strong>Corporate Office:</strong><br>
+                    No. 123, Main Street,<br>
+                    Cityville, State - 123456,<br>
+                    Country
+                </address>
+            </div>
+
+            <!-- Column 2: Product Links -->
+            <div class="footer-column">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Scholar FAQs</a></li>
+                    <li><a href="#">How it Works</a></li>
+                    <li><a href="#">List Your Property</a></li>
+                    <li><a href="#">Student Stories</a></li>
+                    <li><a href="#">Amenities</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Company Links -->
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Disclaimers</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Why Choose Easy to Find</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact Us & Social Media -->
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone-alt"></i> +91 9876543210</div>
+                    <div><i class="fas fa-envelope"></i> info@easytofind.com</div>
+                </div>
+
+                <h3 class="mt-8 mb-4">Stay In Touch</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="hostel.js"></script>
+</body>
+</html>
